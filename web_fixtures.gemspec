@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["Jeff Tucker"]
   s.date = %q{2010-09-19}
   s.default_executable = %q{web_fixtures}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{WebFixtures lets you easily generate fixture files for web service responses}
   s.email = %q{trydionel@gmail.com}
   s.executables = ["web_fixtures"]
   s.extra_rdoc_files = [
@@ -35,13 +35,14 @@ Gem::Specification.new do |s|
      "spec/spec_helper.rb",
      "spec/web_fixtures/base_spec.rb",
      "spec/web_fixtures/dsl_spec.rb",
-     "spec/web_fixtures/request_spec.rb"
+     "spec/web_fixtures/request_spec.rb",
+     "web_fixtures.gemspec"
   ]
   s.homepage = %q{http://github.com/trydionel/web_fixtures}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{WebFixtures lets you easily generate fixture files for web service responses}
   s.test_files = [
     "spec/demo.rb",
      "spec/demo2.rb",
