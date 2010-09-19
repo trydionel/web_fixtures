@@ -4,6 +4,10 @@ describe WebFixtures::Base do
 
   it { should be_a(Array) }
   its(:dsl) { should be_a(WebFixtures::DSL) }
+  
+  it "should expose a version number" do
+    WebFixtures::Version.should == File.read(File.join(File.dirname(__FILE__), '..', '..', 'VERSION'))
+  end
 
   describe "#run!" do
 

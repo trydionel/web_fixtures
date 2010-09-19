@@ -1,4 +1,6 @@
 module WebFixtures
+  
+  Version = File.read(File.join(File.dirname(__FILE__), '..', '..', 'VERSION'))
 
   def self.generate(&block)
     WebFixtures::Base.new(&block)
