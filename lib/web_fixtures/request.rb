@@ -1,3 +1,5 @@
+require 'cgi'
+
 module WebFixtures
   class Request
 
@@ -27,6 +29,7 @@ module WebFixtures
       command = "curl -s"
       command << " -i" if options[:include_headers]
       command << " -u #{collect_username}:#{collect_password}" if options[:authenticate]
+      command << " -d #{data_string}" if options[:data]
       command << " -X #{method.to_s.upcase}" if method != :get
       command << " -o \"#{output_file}\""
       command << " \"#{uri}\""
@@ -51,6 +54,12 @@ module WebFixtures
 
     def output_file
       File.join(storage_path, filename)
+    end
+
+    def data_string
+      options[:data].map do |key, value|
+        "#{CGI.escape(key.to_s)}=#{CGI.escape(value.to_s)}"
+      end.join('&')
     end
 
     def collect_username

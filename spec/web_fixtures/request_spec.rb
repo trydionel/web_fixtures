@@ -56,6 +56,25 @@ describe WebFixtures::Request do
     end
 
   end
+  
+  describe "#data_string" do
+    
+    it "should map the data elements into key=value format" do
+      subject.options = { :data => { :foo => "foo" } }
+      subject.data_string.should == "foo=foo"
+    end
+    
+    it "should join the data elements" do
+      subject.options = { :data => { :foo => "foo", :bar => "bar" } }
+      subject.data_string.should match /(foo=foo|bar=bar)\&(foo=foo|bar=bar)/ # messy way to handle (lack-of) hash ordering
+    end
+    
+    it "should url-encode the data elements" do
+      subject.options = { :data => { :foo => "f o o" } }
+      subject.data_string.should == "foo=f+o+o"
+    end
+    
+  end
 
   describe "#collect_password" do
 
@@ -128,6 +147,11 @@ describe WebFixtures::Request do
       subject.password = "bar"
 
       subject.curl_command.should include('-u foo:bar')
+    end
+    
+    it "should include -d key=val when passing data" do
+      subject.options = { :data => { :foo => "foo" } }
+      subject.curl_command.should include('-d foo=foo')
     end
 
     it "should not include -X for GET requests" do

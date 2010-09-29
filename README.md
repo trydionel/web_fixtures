@@ -26,6 +26,7 @@ Also comes with a command line tool `web_fixtures` which allow you to run simple
     
     get "http://api.foursquare.com/v1/user"
     get "http://www.foursquare.com", :authenticate => false
+    post "http://api.foursquare.com/v1/checkin", :data => { :vid => 24676 }
 
 ## File Storage
 
@@ -46,6 +47,7 @@ WebFixtures supports authentication through Basic HTTP Auth.  After setting `aut
 * Can enable/disable storing header data with `include_headers` [default: true]
 * Specify storage path for fixtures with `storage_path` [default: './fixtures']
 * Supports HTTP Basic Auth with the `authenticate` option [default: false]
+* Pass data to a URI via the `:data` inline option [default: nil]
 * These options are available as both top-level methods and inline options for overriding defaults on a single request.
 
 ## Note on Patches/Pull Requests

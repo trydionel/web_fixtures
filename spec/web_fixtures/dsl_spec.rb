@@ -53,6 +53,16 @@ describe WebFixtures::DSL do
         subject.send method, "http://www.google.com", :authenticate => true
       end
 
+      it "should allow for sending data" do
+        WebFixtures::Request.should_receive(:new).
+          with(method,
+            'http://www.google.com/search',
+            hash_including(:data => { :q => 'foo' }))
+
+        # Poor example
+        subject.send method, "http://www.google.com/search", :data => { :q => "foo" }
+      end
+
     end
 
   end
